@@ -1,29 +1,26 @@
-"use client";
+"use server";
 import HeadTitle from "@/components/typography/head";
-import React, { useState } from "react";
-
-import { PopupCreateProject } from "@/components/dialog";
-import CreateProjectForm from "./form";
 import ListProjects from "./table";
+import { projectApi } from "@/api/project-api/api";
+import { cookies } from "next/headers";
+import AddDialog from "./add-dialog";
 
-export default function Tasks() {
-  const [isOpen, setIsOpen] = useState(false)
+export default async function Tasks() {
+  const cookieStore = cookies()
+  const token = cookieStore.get('token')?.value
+
+  const list = await projectApi(token!)
+
   return (
     <>
       <div className="flex justify-between">
         <HeadTitle>Tasks</HeadTitle>
-        <PopupCreateProject
-          isOpen={isOpen}
-          setIsOpen={setIsOpen}
-        >
-          <CreateProjectForm 
-            isOpen={isOpen}
-            setIsOpen={setIsOpen}
-          />
-        </PopupCreateProject>
+        <AddDialog/>
       </div>
       <div className="bg-white my-10">
-        <ListProjects/>
+        <ListProjects
+          list={list}
+        />
       </div>
     </>
   );

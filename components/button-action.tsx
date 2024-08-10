@@ -22,7 +22,7 @@ export default function ButtonAct({
       <Button type={type} className={className}>
         {
           pending? 
-          <LoaderCircle className="w-4 h-4 animate-spin" />
+          <>{children}<LoaderCircle className="ml-1 w-4 h-4 animate-spin" /></>
           :
           <>{children}</>
         }

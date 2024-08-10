@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Ubuntu, Oxygen } from "next/font/google";
 import "./globals.css";
+import StoreProvider from "@/store/storeProvider";
 
 const inter = Oxygen({ subsets: ["latin"], weight:"400" });
 
@@ -15,8 +16,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} bg-slate-200 text-slate-900`}>{children}</body>
-    </html>
+    <StoreProvider>
+      <html lang="en">
+        <body className={`${inter.className} bg-slate-200 text-slate-900`}>{children}</body>
+      </html>
+    </StoreProvider>
   );
 }
