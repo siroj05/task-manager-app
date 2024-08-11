@@ -1,6 +1,7 @@
 "use client";
 import { colorStatus } from "@/app/custom-hooks/color-status";
 import { getPriorityIconWithLabel } from "@/app/custom-hooks/get-priority-icon";
+import { getDDMMYYY } from "@/app/custom-hooks/getDDMMYYY";
 import { Circle } from "lucide-react";
 import React from "react";
 
@@ -19,6 +20,9 @@ export default function TableSubTasks({ item }: Props) {
           <th className="text-sm text-slate-500 font-normal border-b">
             <div className="text-left">Priority</div>
           </th>
+          <th className="text-sm text-slate-500 font-normal border-b">
+            <div className="text-left">Created At</div>
+          </th>
         </tr>
         {item.subtasks.map((sub: any, i: number) => (
           <>
@@ -32,6 +36,7 @@ export default function TableSubTasks({ item }: Props) {
                 {sub.subtask_name}
               </td>
               <td className="">{getPriorityIconWithLabel(sub.priority)}</td>
+              <td>{getDDMMYYY(sub.subtask_created_at)}</td>
             </tr>
           </>
         ))}
