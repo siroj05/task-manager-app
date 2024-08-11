@@ -6,6 +6,6 @@ interface Props {
 
 export default function HeadTitle({children}:Props) {
   return (
-    <div className='font-bold text-xl'>{children}</div>
+    <div className='font-bold text-xl my-auto'>{children}</div>
   )
 }

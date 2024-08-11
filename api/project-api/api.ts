@@ -26,6 +26,9 @@ export const createProject = async (FormData: FormData) => {
     revalidatePath("/main/projects");
     return data;
   }
+  else{
+    return data;
+  }
 };
 
 export const projectApi = async (token: string) => {

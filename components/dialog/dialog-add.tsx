@@ -1,27 +1,34 @@
 'use client'
 import { Button } from "@/components/ui/button";
 import { Plus, X } from "lucide-react";
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 import { AppDispatch } from "@/store/store";
-import { setIsOpen } from "@/app/(page)/main/projects/slice/projectSlice";
+import { setIsOpen, reset } from "@/app/(page)/main/projects/slice/projectSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 
 interface Props {
   children: ReactNode;
+  title : string
 }
 
-export function DialogAddProject({ 
+export function DialogAdd({ 
   children,  
+  title
 }: Props) {
 
   const dispatch : AppDispatch = useDispatch()
   const isOpen = useSelector((state : RootState) => state.open.isOpen)
+
+  useEffect(() => {
+    dispatch(reset())
+  },[])
+
   return (
     <>
-      <Button onClick={() => dispatch(setIsOpen(true))} className="bg-indigo-800 hover:bg-indigo-700">
-        <Plus className="w-4 h-4" />
-        Create Project
+      <Button size={'sm'} onClick={() => dispatch(setIsOpen(true))} className="bg-indigo-500 hover:bg-indigo-700 p-2 rounded-none">
+        <Plus className="w-4 h-4 text-xs" />
+        {title}
       </Button>
       <div
       onClick={e => e.stopPropagation()}
@@ -30,7 +37,7 @@ export function DialogAddProject({
           <button onClick={() => dispatch(setIsOpen(false))} className="absolute top-2 right-2 ">
             <X className="w-4 h-4 text-black"/>
           </button>
-          <div className="font-semibold">Create Project</div>
+          <div className="font-semibold">{title}</div>
           <div className="my-5">
             {children}
           </div>

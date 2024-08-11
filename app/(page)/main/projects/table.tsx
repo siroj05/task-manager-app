@@ -8,7 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { getDDMMYYY } from "@/utils/custom-hooks/getDDMMYYY";
+import { getDDMMYYY } from "@/app/custom-hooks/getDDMMYYY";
 import ListAction from "@/components/list.action";
 
 interface Props {

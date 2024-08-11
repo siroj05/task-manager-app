@@ -5,12 +5,12 @@ import {
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { MoreHorizontal, Pencil } from "lucide-react";
+import { MoreHorizontal, Pencil, FolderOpen } from "lucide-react";
 import { Button } from "./ui/button";
 import DialogEditProject from "./dialog/dialog-edit";
+import Link from "next/link";
 
 interface Props {
   item : ListProject
@@ -33,7 +33,7 @@ export default function ListAction({item}:Props) {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-[200px]">
-          <DropdownMenuLabel>Actions</DropdownMenuLabel>
+          {/* <DropdownMenuLabel>Actions</DropdownMenuLabel> */}
           <DropdownMenuGroup>
             <button className="w-full" type="button" onClick={() => setIsEdit(true)}>
               <DropdownMenuItem className="hover:bg-slate-100">
@@ -41,6 +41,14 @@ export default function ListAction({item}:Props) {
                 Edit
               </DropdownMenuItem>
             </button>
+          </DropdownMenuGroup>
+          <DropdownMenuGroup>
+            <Link href={`projects/${item.project_id}`} className="w-full">
+              <DropdownMenuItem className="hover:bg-slate-100">
+                <FolderOpen className="mr-2 h-4 w-4" />
+                Detail
+              </DropdownMenuItem>
+            </Link>
           </DropdownMenuGroup>
         </DropdownMenuContent>
       </DropdownMenu>

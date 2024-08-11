@@ -6,7 +6,7 @@ import ButtonAct from "@/components/button-action";
 import { createProject } from "@/api/project-api/api";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store/store";
-import { setIsOpen } from "./slice/projectSlice";
+import { setIsOpen } from "../slice/projectSlice";
 import { DialogAdd } from "@/components/dialog/dialog-add";
 
 
@@ -14,10 +14,9 @@ export default function AddDialog() {
   const ref = useRef<HTMLFormElement>(null)
   const [err, setErr] = useState('')
   const dispatch : AppDispatch = useDispatch()
-
   return (
     <DialogAdd
-      title="Add Project"
+      title="Add Task"
     >
       <form 
         ref={ref}
@@ -32,7 +31,7 @@ export default function AddDialog() {
           }
         }
       }>
-        <Label htmlFor="project">Project Title</Label>
+        <Label htmlFor="project">Task Name</Label>
         <Input name="project" id="project" placeholder="Write project title"/>
         {
           err &&

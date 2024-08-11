@@ -14,10 +14,12 @@ export default async function Tasks() {
   return (
     <>
       <div className="flex justify-between">
-        <HeadTitle>Tasks</HeadTitle>
+        <HeadTitle>Project</HeadTitle>
+      </div>
+      <div className="flex justify-end my-3  border-t border-solid border-slate-400 p-1">
         <AddDialog/>
       </div>
-      <div className="bg-white my-10">
+      <div className="bg-white">
         <ListProjects
           list={list}
         />

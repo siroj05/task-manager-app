@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Inter, Ubuntu, Oxygen } from "next/font/google";
+import { Inter, Ubuntu, Oxygen, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import StoreProvider from "@/store/storeProvider";
 
-const inter = Oxygen({ subsets: ["latin"], weight:"400" });
+const inter = Plus_Jakarta_Sans({ subsets: ["latin"]});
 
 export const metadata: Metadata = {
   title: "Task Manager",
