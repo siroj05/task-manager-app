@@ -19,17 +19,20 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { dropdownStatus } from "@/api/dropdown/status-api"
+import { AppDispatch, RootState } from "@/store/store"
+import { useDispatch, useSelector } from "react-redux"
+import { selectStatus } from "./slice/dropdownSlice"
 
 export function SelectStatus() {
   const [open, setOpen] = React.useState(false)
-  const [value, setValue] = React.useState("")
+  const dispatch : AppDispatch = useDispatch()
+  const value = useSelector((state : RootState) => state.dropdown.status)
   const [isLoading, setIsLoading] = React.useState(true)
   const [data, setData] = React.useState<any[]>([])
 
   React.useEffect(() => {
     const callApi = async () => {
       const res = await dropdownStatus()
-      console.log(res)
       setData(res)
       setIsLoading(false)
     }
@@ -43,7 +46,7 @@ export function SelectStatus() {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[200px] justify-between"
+          className="w-[180px] justify-between"
         >
           {value
             ? data.find((item) => item.name === value)?.name
@@ -51,7 +54,7 @@ export function SelectStatus() {
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[200px] p-0">
+      <PopoverContent className="w-[180px] p-0">
         <Command>
           <CommandInput placeholder="Search status..." />
           <CommandList>
@@ -62,7 +65,7 @@ export function SelectStatus() {
                   key={item.id}
                   value={item.id}
                   onSelect={() => {
-                    setValue(item.name)
+                    dispatch(selectStatus(item.name))
                     setOpen(false)
                   }}
                 >

@@ -35,7 +35,7 @@ export default function TableSubTasks({ item }: Props) {
                 />
                 {sub.subtask_name}
               </td>
-              <td className="">{getPriorityIconWithLabel(sub.priority)}</td>
+              <td className="">{getPriorityIconWithLabel(sub.subtask_priority)}</td>
               <td>{getDDMMYYY(sub.subtask_created_at)}</td>
             </tr>
           </>

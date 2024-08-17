@@ -4,6 +4,7 @@ import { Plus, X } from "lucide-react";
 import { ReactNode, useEffect } from "react";
 import { AppDispatch } from "@/store/store";
 import { setIsOpen, reset } from "@/app/(page)/main/projects/slice/projectSlice";
+import { reset as resetDropdown } from "../dropdown/slice/dropdownSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 
@@ -19,10 +20,12 @@ export function DialogAdd({
 
   const dispatch : AppDispatch = useDispatch()
   const isOpen = useSelector((state : RootState) => state.open.isOpen)
-
   useEffect(() => {
     dispatch(reset())
   },[])
+  useEffect(() => {
+    !isOpen && dispatch(resetDropdown())
+  },[isOpen])
 
   return (
     <>

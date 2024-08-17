@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import ButtonAct from "@/components/button-action";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import React from "react";
@@ -14,7 +14,7 @@ export default function FormLogin() {
         <Label htmlFor="password">Password</Label>
         <Input id="password" type="password" name="password" placeholder="Password" />
       </div>
-      <Button className="w-full bg-indigo-600 hover:bg-indigo-500">Sign In</Button>
+      <ButtonAct type="submit" className="w-full bg-indigo-600 hover:bg-indigo-500">Sign In</ButtonAct>
     </div>
   );
 }

@@ -16,10 +16,11 @@ export default function TableTasks(
   const toggle = (itemId: number) => {
     setIsOpen((prev) => (prev === itemId ? null : itemId));
   };
+
   return (
     <div>
-      {data.length > 0 ? (
-        data.map((item: any, i: number) => (
+      {data?.tasks?.length > 0 ? (
+        data.tasks.map((item: any, i: number) => (
           <div key={i}>
             <div className="bg-white border w-full text-slate-500 text-sm p-1 flex">
               <button
@@ -42,7 +43,7 @@ export default function TableTasks(
                     <Circle className="w-3 h-3 my-auto mr-1" />
                     {item.task_status}
                   </button>
-                  {getPriorityIconWithLabel(item.priority)}
+                  {getPriorityIconWithLabel(item.task_priority)}
                   <button className="flex hover:bg-slate-200 px-1 rounded-sm">
                     <Plus className="w-4 h-4 my-auto" />
                     Add..
