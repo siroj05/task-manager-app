@@ -3,7 +3,6 @@ import React, { useRef, useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import ButtonAct from "@/components/button-action";
-import { createProject } from "@/api/project-api/api";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { setIsOpen } from "../slice/projectSlice";

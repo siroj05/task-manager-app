@@ -4,13 +4,15 @@ import { getPriorityIconWithLabel, PriorityIcon } from '@/app/custom-hooks/get-p
 import { ChevronDown, ChevronUp, Circle, Plus } from 'lucide-react';
 import React, { useState } from 'react'
 import TableSubTasks from './table-sub-task';
+import AddSubtask from './add-subtask';
 
 interface Props{
   data : any
+  projectId : string
 }
 
 export default function TableTasks(
-  {data}:Props
+  {data, projectId}:Props
 ) {
   const [isOpen, setIsOpen] = useState<number | null>(null);
   const toggle = (itemId: number) => {
@@ -44,10 +46,14 @@ export default function TableTasks(
                     {item.task_status}
                   </button>
                   {getPriorityIconWithLabel(item.task_priority)}
-                  <button className="flex hover:bg-slate-200 px-1 rounded-sm">
+                  {/* <button className="flex hover:bg-slate-200 px-1 rounded-sm">
                     <Plus className="w-4 h-4 my-auto" />
                     Add..
-                  </button>
+                  </button> */}
+                  <AddSubtask
+                    taskId={item.task_id}
+                    projectId={projectId}
+                  />
                 </div>
                 <div className="text-black font-semibold">{item.task_name}</div>
               </div>
