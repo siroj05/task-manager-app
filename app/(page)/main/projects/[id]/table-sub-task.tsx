@@ -10,6 +10,10 @@ interface Props {
 }
 
 export default function TableSubTasks({ item }: Props) {
+  const handleClick = (event: any) => {
+    console.log(event)
+  };
+
   return (
     <div className="bg-white p-1 mx-1">
       <table className="w-full ml-2">
@@ -24,22 +28,30 @@ export default function TableSubTasks({ item }: Props) {
             <div className="text-left">Created At</div>
           </th>
         </tr>
-        {item.subtasks.map((sub: any, i: number) => (
-          <>
-            <tr key={i} className="ml-8 text-sm border-b">
-              <td className="flex">
-                <Circle
-                  className={`text-white rounded-full w-3 h-3 my-auto mr-1 ${colorStatus(
-                    sub.subtask_status
-                  )}`}
-                />
-                {sub.subtask_name}
-              </td>
-              <td className="">{getPriorityIconWithLabel(sub.subtask_priority)}</td>
-              <td>{getDDMMYYY(sub.subtask_created_at)}</td>
-            </tr>
-          </>
-        ))}
+        {item.subtasks.map((sub: any, i: number) => {
+          return (
+            <>
+              <tr
+                key={i}
+                onClick={() => handleClick(sub)}
+                className="ml-8 text-sm border-b cursor-pointer hover:bg-gray-50"
+              >
+                <td className="flex">
+                  <Circle
+                    className={`text-white rounded-full w-3 h-3 my-auto mr-1 ${colorStatus(
+                      sub.subtask_status
+                    )}`}
+                  />
+                  {sub.subtask_name}
+                </td>
+                <td className="">
+                  {getPriorityIconWithLabel(sub.subtask_priority)}
+                </td>
+                <td>{getDDMMYYY(sub.subtask_created_at)}</td>
+              </tr>
+            </>
+          );
+        })}
       </table>
     </div>
   );
