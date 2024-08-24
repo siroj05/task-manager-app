@@ -5,14 +5,13 @@ import { getDDMMYYY } from "@/app/custom-hooks/getDDMMYYY";
 import { Circle } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import EditSubtask from "./edit-subtask";
-import { AppDispatch } from "@/store/store";
-import { useDispatch } from "react-redux";
 
 interface Props {
   item: any;
+  projectId : string
 }
 
-export default function TableSubTasks({ item }: Props) {
+export default function TableSubTasks({ item, projectId }: Props) {
   const [detail, setDetail] = useState<any>()
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
@@ -66,6 +65,7 @@ export default function TableSubTasks({ item }: Props) {
         isOpen={isOpen}
         setIsOpen={setIsOpen}
         detail={detail}
+        projectId={projectId}
       />
     </>
   );

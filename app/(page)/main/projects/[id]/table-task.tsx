@@ -63,6 +63,7 @@ export default function TableTasks(
               isOpen === item.task_id && 
               <TableSubTasks
                 item={item}
+                projectId={projectId}
               />
             }
           </div>

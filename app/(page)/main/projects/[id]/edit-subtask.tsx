@@ -1,4 +1,5 @@
 "use client";
+import { editSubtask } from "@/api/subtask-api/api";
 import ButtonAct from "@/components/button-action";
 import { DialogEditAddSubtask } from "@/components/dialog/dialog-edit-subtask";
 import { SelectPriority } from "@/components/dropdown/select-priority";
@@ -15,12 +16,14 @@ interface Props {
   detail : any
   isOpen : boolean
   setIsOpen : (value : boolean) => void
+  projectId : string
 }
 
-export default function EditSubtask({ detail, isOpen, setIsOpen }: Props) {
+export default function EditSubtask({ detail, isOpen, setIsOpen, projectId }: Props) {
   const ref = useRef<HTMLFormElement>(null);
   const dispatch : AppDispatch = useDispatch()
-
+  const status = useSelector((state : RootState) => state.dropdown.status)
+  const priority = useSelector((state : RootState) => state.dropdown.priority)
   useEffect(() => {
     dispatch(selectPriority(detail?.subtask_priority))
     dispatch(selectStatus(detail?.subtask_status))
@@ -33,7 +36,23 @@ export default function EditSubtask({ detail, isOpen, setIsOpen }: Props) {
         setIsOpen={setIsOpen}
         title="Edit Subtask"
       >
-        <form>
+        <form
+        ref={ref}
+          action={
+            async (formData) => {
+              const res = await editSubtask(formData)
+              if(res.success){
+                setIsOpen(!res.success)
+                ref.current?.reset()
+              }
+            }
+          }
+        >
+          <input type="hidden" name="status" value={status}/>
+          <input type="hidden" name="priority" value={priority}/>
+          <input type="hidden" name="subtaskId" value={detail?.subtask_id}/>
+          <input type="hidden" name="taskId" value={detail?.task_id}/>
+          <input type="hidden" name="projectId" value={projectId}/>
           <div className="flex flex-col gap-1">
             <Label htmlFor="subtask">Subtask Name</Label>
             <Input
