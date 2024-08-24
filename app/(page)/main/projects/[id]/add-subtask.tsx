@@ -1,7 +1,7 @@
 "use client"
 import { saveSubtask } from '@/api/subtask-api/api'
 import ButtonAct from '@/components/button-action'
-import { DialogAddSubtask } from '@/components/dialog/dialog-subtask'
+import { DialogAddSubtask } from '@/components/dialog/dialog-add-subtask'
 import { SelectPriority } from '@/components/dropdown/select-priority'
 import { SelectStatus } from '@/components/dropdown/select-status'
 import { Input } from '@/components/ui/input'
