@@ -61,12 +61,15 @@ export default function TableSubTasks({ item, projectId }: Props) {
           })}
         </table>
       </div>
-      <EditSubtask
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
-        detail={detail}
-        projectId={projectId}
-      />
+      {
+        isOpen &&  
+          <EditSubtask
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+            detail={detail}
+            projectId={projectId}
+          />
+      }
     </>
   );
 }

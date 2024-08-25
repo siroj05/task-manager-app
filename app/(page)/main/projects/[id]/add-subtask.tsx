@@ -7,9 +7,10 @@ import { SelectStatus } from '@/components/dropdown/select-status'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
-import { RootState } from '@/store/store'
-import React, { useRef, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { AppDispatch, RootState } from '@/store/store'
+import React, { useEffect, useRef, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { reset as resetDropdown } from '@/components/dropdown/slice/dropdownSlice'
 
 interface Props {
   taskId : number
@@ -26,7 +27,11 @@ export default function AddSubtask(
   const ref = useRef<HTMLFormElement>(null)
   const status = useSelector((state : RootState) => state.dropdown.status)
   const priority = useSelector((state : RootState) => state.dropdown.priority)
+  const dispatch : AppDispatch = useDispatch()
   
+  useEffect(() => {
+    dispatch(resetDropdown())
+  },[isOpen])
   return (
     <>
       <DialogAddSubtask

@@ -11,6 +11,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { AppDispatch, RootState } from "@/store/store";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { reset as resetDropdown } from "@/components/dropdown/slice/dropdownSlice";
 
 interface Props {
   detail : any
@@ -22,12 +23,13 @@ interface Props {
 export default function EditSubtask({ detail, isOpen, setIsOpen, projectId }: Props) {
   const ref = useRef<HTMLFormElement>(null);
   const dispatch : AppDispatch = useDispatch()
+  useEffect(() => {
+    dispatch(resetDropdown())
+  },[isOpen])
   const status = useSelector((state : RootState) => state.dropdown.status)
   const priority = useSelector((state : RootState) => state.dropdown.priority)
-  useEffect(() => {
-    dispatch(selectPriority(detail?.subtask_priority))
-    dispatch(selectStatus(detail?.subtask_status))
-  },[detail])
+  dispatch(selectPriority(detail?.subtask_priority))
+  dispatch(selectStatus(detail?.subtask_status))
 
   return (
     <>

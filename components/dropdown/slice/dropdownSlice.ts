@@ -22,8 +22,8 @@ const dropdownSlice = createSlice({
       state.priority = action.payload
     },
     reset : (state) => {
-      state.status = ''
-      state.priority = ''
+      state.status = initialState.status
+      state.priority = initialState.priority
     }
   }
 })
